@@ -1,2 +1,2 @@
 # javaee api e angularjs webpack app para biblioteca 
-Api para e App para gerênciamento de biblioteca
+Api e App para gerenciamento e atendimento de biblioteca
