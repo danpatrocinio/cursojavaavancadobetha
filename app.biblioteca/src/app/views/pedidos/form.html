@@ -1,0 +1,26 @@
+<div class="container-fluid">
+    <div class="row justify-content-sm-center">
+        <div class="col-sm-8">
+            <h2 class="title">{{vm.title}}</h2>
+            <form>
+                <div class="form-row">
+                    <div class="form-group col-md-5">
+                        <label>Emissão</label>
+                        <input ng-flatpickr data-date-format="d/m/Y H:i" enable-time time24hr type="text" ng-model="vm.record.emissao" class="form-control">
+                    </div>
+                    <div class="form-group col-md-5 ml-md-auto">
+                        <label>Aprovação</label>
+                        <input ng-flatpickr data-date-format="d/m/Y H:i" enable-time time24hr type="text" ng-model="vm.record.aprovacao" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Cliente</label>
+                    <input type="text" ng-model="vm.record.cliente.nome" readonly class="form-control">
+                </div>
+                <button ng-click="vm.save()" type="button" class="btn btn-primary btn-lg">Salvar Registro</button>
+                <a ui-sref="pedido.list" class="btn btn-danger">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="container-fluid">
+    <nav class="navbar navbar-light bg-light">
+        <form class="form-inline" ng-submit="vm.load()">
+            <input ng-model="vm.filterValue" class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+        </form>
+        <a class="btn btn-outline-info" ui-sref="pedido.new">Novo registro</a>
+    </nav>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Emissão</th>
+                <th scope="col">Cliente</th>
+                <th scope="col">Total</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="rec in vm.records">
+                <th scope="row">{{rec.emissao | date : 'dd/MM/yyyy HH:mm' : '+0'}}</th>
+                <td>{{rec.cliente.nome}}</td>
+                <td>{{rec.total}}</td>
+                <td style="text-align: right">
+                    <a class="btn btn-sm btn-success" ui-sref="pedido.edit({id: rec.id})">Editar</a>
+                    <button ng-click="vm.excluir(rec.id)" class="btn btn-sm btn-danger" type="button">Excluir</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
