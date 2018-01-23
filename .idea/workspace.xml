@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" readonly="true" id="17c22d3a-32ee-4bc8-b0a0-4fede2b32e06" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/app.biblioteca/src/app/main.module.js" afterPath="$PROJECT_DIR$/app.biblioteca/src/app/main.module.js" />
-      <change beforePath="$PROJECT_DIR$/app.biblioteca/src/index.html" afterPath="$PROJECT_DIR$/app.biblioteca/src/index.html" />
-    </list>
+    <list default="true" readonly="true" id="17c22d3a-32ee-4bc8-b0a0-4fede2b32e06" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/api.biblioteca-ejb/target/" />
@@ -33,7 +30,7 @@
         <entry file="file://$PROJECT_DIR$/api.biblioteca-ejb/src/main/java/api/biblioteca/satc/model/Livro.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="379">
-              <caret line="28" column="14" lean-forward="true" selection-start-line="28" selection-start-column="14" selection-end-line="28" selection-end-column="14" />
+              <caret line="28" column="14" lean-forward="false" selection-start-line="28" selection-start-column="14" selection-end-line="28" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -63,7 +60,7 @@
         <entry file="file://$PROJECT_DIR$/api.biblioteca-ejb/src/main/java/api/biblioteca/satc/model/Autor.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="363">
-              <caret line="53" column="27" lean-forward="true" selection-start-line="53" selection-start-column="27" selection-end-line="53" selection-end-column="27" />
+              <caret line="53" column="27" lean-forward="false" selection-start-line="53" selection-start-column="27" selection-end-line="53" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -870,7 +867,7 @@
     <entry file="file://$PROJECT_DIR$/api.biblioteca-ejb/src/main/java/api/biblioteca/satc/model/Livro.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="379">
-          <caret line="28" column="14" lean-forward="true" selection-start-line="28" selection-start-column="14" selection-end-line="28" selection-end-column="14" />
+          <caret line="28" column="14" lean-forward="false" selection-start-line="28" selection-start-column="14" selection-end-line="28" selection-end-column="14" />
           <folding />
         </state>
       </provider>
@@ -886,7 +883,7 @@
     <entry file="file://$PROJECT_DIR$/api.biblioteca-ejb/src/main/java/api/biblioteca/satc/model/Autor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="363">
-          <caret line="53" column="27" lean-forward="true" selection-start-line="53" selection-start-column="27" selection-end-line="53" selection-end-column="27" />
+          <caret line="53" column="27" lean-forward="false" selection-start-line="53" selection-start-column="27" selection-end-line="53" selection-end-column="27" />
           <folding />
         </state>
       </provider>
