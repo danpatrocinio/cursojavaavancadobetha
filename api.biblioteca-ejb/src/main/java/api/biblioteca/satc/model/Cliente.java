@@ -31,7 +31,7 @@ public class Cliente implements Serializable, api.biblioteca.satc.model.Entity {
 	private Date dataNascimento;
 	private String telefone;
 	@Size(min = 5, max = 80)
-	@NotNull(message = "O endereço do usuário não pode ser nulo")
+	@NotNull(message = "O endereço do cliente não pode ser nulo")
 	private String endereco;
 	private String celular;
 	private String email;
