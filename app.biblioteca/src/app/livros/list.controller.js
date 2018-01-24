@@ -8,6 +8,7 @@ export default class ListController {
         this.order = 'titulo'
         this.records = []
         this._service = LivroServico
+        this.title = 'Livros'
         this._notify = Notification
         this.load()
     }

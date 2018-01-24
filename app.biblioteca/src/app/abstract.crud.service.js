@@ -6,7 +6,7 @@ export default class AbstractCrudService {
   }
 
   findAll(filterField, filterValue, order) {
-    return this._http.get(`${this._url}`, {
+    return this._http.get(`${this._url}/`, {
       params: {
         filterField,
         filterValue,
