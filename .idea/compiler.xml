@@ -12,6 +12,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="api.biblioteca" target="1.7" />
       <module name="api.biblioteca-ear" target="1.7" />
       <module name="api.biblioteca-ejb" target="1.7" />
       <module name="api.biblioteca-web" target="1.7" />

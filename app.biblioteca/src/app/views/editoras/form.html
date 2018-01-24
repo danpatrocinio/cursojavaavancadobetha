@@ -1,0 +1,15 @@
+<div class="container-fluid">
+    <div class="row justify-content-sm-center">
+        <div class="col-sm-8">
+            <h2 class="title">{{vm.title}}</h2>
+            <form>
+                <div class="form-group col-md-12">
+                    <label>Nome</label>
+                    <input type="text" ng-model="vm.record.nome" class="form-control">
+                </div>
+                <button ng-click="vm.save()" type="button" class="btn btn-primary btn-lg">Salvar Registro</button>
+                <a ui-sref="editora.list" class="btn btn-danger">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>
