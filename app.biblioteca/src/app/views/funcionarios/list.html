@@ -4,28 +4,28 @@
             <input ng-model="vm.filterValue" class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
         </form>
-        <a class="btn btn-outline-info" ui-sref="livro.new">Novo registro</a>
+        <a class="btn btn-outline-info" ui-sref="funcionario.new">Novo registro</a>
     </nav>
     <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col">Título</th>
-                <th scope="col">Autor</th>
-                <th scope="col">Editora</th>
-                <th scope="col">Gênero</th>
-                <th scope="col">ISBN</th>
+                <th scope="col">CPF</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Email</th>
+                <th scope="col">Celular</th>
+                <th scope="col">Cargo</th>
                 <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="rec in vm.records">
-                <th scope="row">{{rec.titulo}}</th>
-                <td>{{rec.autor.nome}}</td>
-                <td>{{rec.editora.nome}}</td>
-                <td>{{rec.genero.descricao}}</td>
-                <td>{{rec.isbn}}</td>
+                <th scope="row">{{rec.cpf}}</th>
+                <td>{{rec.nome}}</td>
+                <td>{{rec.email}}</td>
+                <td>{{rec.celular}}</td>
+                <td>{{rec.cargo}}</td>
                 <td style="text-align: right">
-                    <a class="btn btn-sm btn-success" ui-sref="livro.edit({id: rec.id})">Editar</a>
+                    <a class="btn btn-sm btn-success" ui-sref="funcionario.edit({id: rec.id})">Editar</a>
                     <button ng-click="vm.excluir(rec.id)" class="btn btn-sm btn-danger" type="button">Excluir</button>
                 </td>
             </tr>

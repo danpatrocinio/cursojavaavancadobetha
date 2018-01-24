@@ -45,13 +45,6 @@ public class LivroResource extends AbstractCrudResource<Livro> {
         return service.findAllToSelectable();
     }
 
-    @GET
-    @Path("/{idLivro}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Livro findByIdLivro(@PathParam("idLivro") Long idLivro) {
-        return service.findById(idLivro);
-    }
-
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
