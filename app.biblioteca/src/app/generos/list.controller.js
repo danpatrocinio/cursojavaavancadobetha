@@ -3,9 +3,9 @@ import swal from 'sweetalert2'
 export default class ListController {
 
     constructor(GeneroServico, Notification) {
-        this.filterField = 'nome'
+        this.filterField = 'descricao'
         this.filterValue = ''
-        this.order = 'nome'
+        this.order = 'descricao'
         this.records = []
         this._service = GeneroServico
         this._notify = Notification

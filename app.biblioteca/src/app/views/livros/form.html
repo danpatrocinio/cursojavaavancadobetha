@@ -13,15 +13,30 @@
                 </div>
                 <div class="form-group col-md-12">
                     <label>Autor</label>
-                    <input type="email" ng-model="vm.record.isbn" class="form-control">
-                </div>
+                    <select id="autores" class="custom-select" ng-model="vm.record.autor" ng-required="true">
+                        <option value ="">Selecione o autor</option>
+                        <option ng-repeat="autor in vm.autores | orderBy:'nome'" ng-value="autor" ng-selected="vm.record.autor.id == autor.id">
+                            {{autor.nome}}
+                        </option>
+                    </select>
+                </div>                
                 <div class="form-group col-md-12">
                     <label>Gênero</label>
-                    <input type="text" ng-model="vm.record.isbn" class="form-control">
+                    <select id="generos" class="custom-select" ng-model="vm.record.genero" ng-required="true">
+                        <option value ="">Selecione o gênero</option>
+                        <option ng-repeat="genero in vm.generos | orderBy:'descricao'" ng-value="genero" ng-selected="vm.record.genero.id == genero.id">
+                            {{genero.descricao}}
+                        </option>
+                    </select>
                 </div>
                 <div class="form-group col-md-12">
                     <label>Editora</label>
-                    <input type="text" ng-model="vm.record.isbn" class="form-control">
+                    <select id="editoras" class="custom-select" ng-model="vm.record.editora" ng-required="true">
+                        <option value ="">Selecione a editora</option>
+                        <option ng-repeat="editora in vm.editoras | orderBy:'nome'" ng-value="editora" ng-selected="vm.record.editora.id == editora.id">
+                            {{editora.nome}}
+                        </option>
+                    </select>
                 </div>
                 <br>
                 <button ng-click="vm.save()" type="button" class="btn btn-primary btn-lg">Salvar Registro</button>
