@@ -4,24 +4,27 @@ export default class FormController {
         this.record = {}
         this.title = 'Adicionando registro'
         this._service = LivroServico
+        this._autorService = AutorServico
+        this._editoraService = EditoraServico
+        this._generoService = GeneroServico
+        this.loadChilds()
+        
         if ($stateParams.id) {
             this.title = 'Editando registro'
-            AutorServico.findAll('nome', '', 'nome').then(data => { this.autores = data }).catch(error => { console.log(error) })
-            .then(GeneroServico.findAll('descricao', '', 'descricao').then(data => { this.generos = data  }).catch(error => { console.log(error) }))
-            .then(EditoraServico.findAll('nome', '', 'nome').then(data => { this.editoras = data  }).catch(error => { console.log(error) }))
-            .then(
-                this._service.findById($stateParams.id)
+            this._service.findById($stateParams.id)
                 .then(data => {
                     this.record = data
-            }))
-        } else {
-            AutorServico.findAll('nome', '', 'nome').then(data => { this.autores = data }).catch(error => { console.log(error) })
-            GeneroServico.findAll('descricao', '', 'descricao').then(data => { this.generos = data  }).catch(error => { console.log(error) })
-            EditoraServico.findAll('nome', '', 'nome').then(data => { this.editoras = data  }).catch(error => { console.log(error) })
+            })
         }
 
         this._state = $state
         this._notify = Notification
+    }
+
+    loadChilds() {
+        this._autorService.findAll('nome', '', 'nome').then(data => { this.autores = data }).catch(error => { console.log(error) })
+        this._editoraService.findAll('nome', '', 'nome').then(data => { this.editoras = data  }).catch(error => { console.log(error) })
+        this._generoService.findAll('descricao', '', 'descricao').then(data => { this.generos = data  }).catch(error => { console.log(error) })
     }
 
     save() {

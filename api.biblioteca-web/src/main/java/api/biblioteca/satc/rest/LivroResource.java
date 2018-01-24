@@ -26,6 +26,11 @@ public class LivroResource extends AbstractCrudResource<Livro> {
     }
 
     @Override
+    public List<Livro> findAll(Integer pageNumber, Integer pageSize, String filterField, String filterValue, String order) {
+        return super.findAll(pageNumber, pageSize, filterField, filterValue, order);
+    }
+
+    @Override
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)

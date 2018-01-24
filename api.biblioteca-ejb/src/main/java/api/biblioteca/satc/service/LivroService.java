@@ -34,7 +34,6 @@ public class LivroService extends AbstractCrudService<Livro> {
         return livroDao.findAllToSelectable();
     }
 
-
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public Livro inserir(Livro livro) throws ModelException {
         try {
