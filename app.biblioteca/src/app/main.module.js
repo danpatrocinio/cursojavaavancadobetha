@@ -11,6 +11,7 @@ import { autorConfig } from './autores/config'
 import { editoraConfig } from './editoras/config'
 import { generoConfig } from './generos/config'
 import { livroConfig } from './livros/config'
+import { emprestimoConfig } from './emprestimos/config'
 import { produtoConfig } from './produtos/config'
 import { pedidoConfig } from './pedidos/config'
 
@@ -27,5 +28,6 @@ modulo.config(mainConfig(modulo))
       .config(editoraConfig(modulo))
       .config(generoConfig(modulo))
       .config(livroConfig(modulo))
+      .config(emprestimoConfig(modulo))
       .config(produtoConfig(modulo))
       .config(pedidoConfig(modulo))

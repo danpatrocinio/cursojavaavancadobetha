@@ -1,0 +1,33 @@
+<div class="container-fluid">
+    <nav class="navbar navbar-light bg-light">
+        <h2 class="title">{{vm.title}}</h2>
+        <form class="form-inline" ng-submit="vm.load()">
+            <input ng-model="vm.filterValue" class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+        </form>
+        <a class="btn btn-outline-info" ui-sref="emprestimo.new">Novo registro</a>
+    </nav>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Cliente</th>
+                <th scope="col">Date de empréstimo</th>
+                <th scope="col">Data prevista de devolução</th>
+                <th scope="col">Qtd. de livros</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="rec in vm.records">
+                <th scope="row">{{rec.cliente.nome}}</th>
+                <td>{{rec.dataEmprestimo}}</td>
+                <td>{{rec.dataPrevisaoDevolucao}}</td>
+                <td>{{rec.livros.length}}</td>
+                <td style="text-align: right">
+                    <a class="btn btn-sm btn-success" ui-sref="emprestimo.edit({id: rec.id})">Editar</a>
+                    <button ng-click="vm.excluir(rec.id)" class="btn btn-sm btn-danger" type="button">Excluir</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

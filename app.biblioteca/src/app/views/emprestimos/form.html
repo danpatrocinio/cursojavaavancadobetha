@@ -1,0 +1,51 @@
+<div class="container-fluid">
+    <div class="row justify-content-sm-center">
+        <div class="col-sm-8">
+            <h2 class="title">{{vm.title}}</h2>
+            <form>
+                <div class="form-group col-md-12">
+                    <label>Cliente</label>
+                    <select id="clientes" class="custom-select" ng-model="vm.record.cliente" ng-required="true">
+                        <option value ="">Selecione o cliente</option>
+                        <option ng-repeat="autor in vm.clientes | orderBy:'nome'" ng-value="cliente" ng-selected="vm.record.clientes.id == cliente.id">
+                            {{cliente.nome}}
+                        </option>
+                    </select>
+                </div>                
+                <div class="form-group col-md-12">
+                    <label>Cliente</label>
+                    <input type="text" ng-model="vm.record.titulo" class="form-control">
+                </div>
+                <div class="form-group col-md-5">
+                    <label>ISBN</label>
+                    <input type="text" ng-model="vm.record.isbn" class="form-control">
+                </div>
+                <div class="form-group col-md-5">
+                    <label>Data de lançamento</label>
+                    <input class="form-control" ng-flatpickr data-date-format="Y-m-d" type="text" ng-model="vm.record.dataLancamento">
+                </div>
+                <div class="form-group col-md-12">
+                    <label>Gênero</label>
+                    <select id="generos" class="custom-select" ng-model="vm.record.genero" ng-required="true">
+                        <option value ="">Selecione o gênero</option>
+                        <option ng-repeat="genero in vm.generos | orderBy:'descricao'" ng-value="genero" ng-selected="vm.record.genero.id == genero.id">
+                            {{genero.descricao}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group col-md-12">
+                    <label>Editora</label>
+                    <select id="editoras" class="custom-select" ng-model="vm.record.editora" ng-required="true">
+                        <option value ="">Selecione a editora</option>
+                        <option ng-repeat="editora in vm.editoras | orderBy:'nome'" ng-value="editora" ng-selected="vm.record.editora.id == editora.id">
+                            {{editora.nome}}
+                        </option>
+                    </select>
+                </div>
+                <br>
+                <button ng-click="vm.save()" type="button" class="btn btn-primary btn-lg">Salvar Registro</button>
+                <a ui-sref="livro.list" class="btn btn-danger">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>
