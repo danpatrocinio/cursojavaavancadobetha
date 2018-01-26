@@ -3,48 +3,77 @@
         <div class="col-sm-8">
             <h2 class="title">{{vm.title}}</h2>
             <form>
+                <textarea cols="80" rows="12" readonly class="form-control" ng-show="false">{{vm.record}}</textarea>
                 <div class="form-group col-md-12">
                     <label>Cliente</label>
-                    <select id="clientes" class="custom-select" ng-model="vm.record.cliente" ng-required="true">
+                    <input type="text" ng-model="vm.record.cliente.nome" readonly class="form-control" ng-show="vm.record.id">
+                    <select id="clientes" class="custom-select" ng-model="vm.record.cliente" ng-required="true" ng-show="!vm.record.id" >
                         <option value ="">Selecione o cliente</option>
-                        <option ng-repeat="autor in vm.clientes | orderBy:'nome'" ng-value="cliente" ng-selected="vm.record.clientes.id == cliente.id">
+                        <option ng-repeat="cliente in vm.clientes | orderBy:'nome'" ng-value="cliente" ng-selected="vm.record.cliente.id == cliente.id">
                             {{cliente.nome}}
                         </option>
                     </select>
                 </div>                
                 <div class="form-group col-md-12">
-                    <label>Cliente</label>
-                    <input type="text" ng-model="vm.record.titulo" class="form-control">
-                </div>
-                <div class="form-group col-md-5">
-                    <label>ISBN</label>
-                    <input type="text" ng-model="vm.record.isbn" class="form-control">
-                </div>
-                <div class="form-group col-md-5">
-                    <label>Data de lançamento</label>
-                    <input class="form-control" ng-flatpickr data-date-format="Y-m-d" type="text" ng-model="vm.record.dataLancamento">
-                </div>
-                <div class="form-group col-md-12">
-                    <label>Gênero</label>
-                    <select id="generos" class="custom-select" ng-model="vm.record.genero" ng-required="true">
-                        <option value ="">Selecione o gênero</option>
-                        <option ng-repeat="genero in vm.generos | orderBy:'descricao'" ng-value="genero" ng-selected="vm.record.genero.id == genero.id">
-                            {{genero.descricao}}
+                    <label>Funcionário</label>
+                    <input type="text" ng-model="vm.record.funcionario.nome" readonly class="form-control" ng-show="vm.record.id">
+                    <select id="funcionarios" class="custom-select" ng-model="vm.record.funcionario" ng-required="true" ng-show="!vm.record.id">
+                        <option value ="">Selecione o funcionário</option>
+                        <option ng-repeat="funcionario in vm.funcionarios | orderBy:'nome'" ng-value="funcionario" ng-selected="vm.record.funcionario.id == funcionario.id">
+                            {{funcionario.nome}}
                         </option>
                     </select>
                 </div>
+                <div class="form-group col-md-5">
+                    <label>Data de empréstimo</label>
+                    <input type="text" ng-value="vm.record.dataEmprestimo | date: 'dd/MM/yyyy'" readonly class="form-control" ng-show="vm.record.id">
+                    <input class="form-control" ng-flatpickr data-date-format="Y-m-d" type="text" ng-model="vm.record.dataEmprestimo" ng-show="!vm.record.id">
+                </div>
+                <div class="form-group col-md-5">
+                    <label>Data de previsão de devolução</label>
+                    <input type="text" ng-value="vm.record.dataPrevisaoDevolucao | date: 'dd/MM/yyyy'" readonly class="form-control">
+                </div>
                 <div class="form-group col-md-12">
-                    <label>Editora</label>
-                    <select id="editoras" class="custom-select" ng-model="vm.record.editora" ng-required="true">
-                        <option value ="">Selecione a editora</option>
-                        <option ng-repeat="editora in vm.editoras | orderBy:'nome'" ng-value="editora" ng-selected="vm.record.editora.id == editora.id">
-                            {{editora.nome}}
-                        </option>
-                    </select>
+                    <table class="table table-striped" ng-show="vm.isDevolucao">
+                        <thead>
+                            <tr>
+                                <th scope="col">Títulos</th>
+                                <th scope="col">Autor</th>
+                                <th scope="col">Editora</th>
+                                <th scope="col">Gênero</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="rec in vm.record.livros">
+                                <th scope="row">{{rec.titulo}}</th>
+                                <td>{{rec.autor.nome}}</td>
+                                <td>{{rec.editora.nome}}</td>
+                                <td>{{rec.genero.descricao}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="form-group col-md-5" ng-show="vm.record.id">
+                    <label>Data de devolução</label>
+                    <input type="text" ng-value="vm.record.dataDevolucao | date: 'dd/MM/yyyy'" readonly class="form-control" ng-show="!vm.isDevolucao && vm.record.id">
+                    <input class="form-control" ng-flatpickr data-date-format="Y-m-d" type="text" ng-model="vm.record.dataDevolucao" ng-required="true" ng-show="vm.isDevolucao">
+                </div>
+                <div class="form-group col-md-5" ng-show="vm.record.id">
+                    <label>Multa por atraso</label>
+                    <input type="text" ng-model="vm.record.multaPorAtraso" readonly class="form-control" ng-show="!vm.isDevolucao && vm.record.id">
+                    <input type="number" ng-model="vm.record.multaPorAtraso" class="form-control" min="0" ng-show="vm.isDevolucao">
+                </div>
+                <div class="form-group col-md-12">
+                    <label>Obsevações</label>
+                    <textarea cols="60" rows="3" class="form-control" ng-model="vm.record.observacoes" readonly ng-show="!vm.isDevolucao && vm.record.id"></textarea>
+                    <textarea cols="60" rows="3" class="form-control" ng-model="vm.record.observacoes" ng-show="vm.isDevolucao"></textarea>
                 </div>
                 <br>
-                <button ng-click="vm.save()" type="button" class="btn btn-primary btn-lg">Salvar Registro</button>
-                <a ui-sref="livro.list" class="btn btn-danger">Cancelar</a>
+                <div class="form-group col-md-12">
+                    <button ng-click="vm.save()" type="button" class="btn btn-primary btn-lg" ng-show="vm.isDevolucao || !vm.record.id">{{ !vm.isDevolucao ? 'Salvar Registro' : 'Devolver' }}</button>
+                    <a ui-sref="emprestimo.list" class="btn btn-danger" ng-show="vm.isDevolucao || !vm.record.id">Cancelar</a>
+                    <a ui-sref="emprestimo.list" class="btn btn-outline-info" ng-show="!vm.isDevolucao && vm.record.id">Voltar</a>         
+                </div>
             </form>
         </div>
     </div>

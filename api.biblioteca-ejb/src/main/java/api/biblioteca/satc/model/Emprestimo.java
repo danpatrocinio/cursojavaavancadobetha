@@ -13,6 +13,8 @@ import java.util.List;
 @Table(name = "emprestimo")
 public class Emprestimo implements Serializable, api.biblioteca.satc.model.Entity{
 
+    public static final int PRAZO_ENTREGA_POR_LIVRO = 10;
+
     @Id
     @Column(name = "id_emprestimo")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

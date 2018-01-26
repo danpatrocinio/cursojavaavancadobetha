@@ -12,7 +12,8 @@
             <tr>
                 <th scope="col">Cliente</th>
                 <th scope="col">Date de empréstimo</th>
-                <th scope="col">Data prevista de devolução</th>
+                <th scope="col">Data prevista devolução</th>
+                <th scope="col">Data devolução</th>
                 <th scope="col">Qtd. de livros</th>
                 <th scope="col"></th>
             </tr>
@@ -20,11 +21,12 @@
         <tbody>
             <tr ng-repeat="rec in vm.records">
                 <th scope="row">{{rec.cliente.nome}}</th>
-                <td>{{rec.dataEmprestimo}}</td>
-                <td>{{rec.dataPrevisaoDevolucao}}</td>
+                <td>{{ rec.dataEmprestimo | date: 'dd/MM/yyyy' }}</td>
+                <td>{{ rec.dataPrevisaoDevolucao | date: 'dd/MM/yyyy' }}</td>
+                <td>{{ rec.dataDevolucao | date: 'dd/MM/yyyy' }}</td>
                 <td>{{rec.livros.length}}</td>
                 <td style="text-align: right">
-                    <a class="btn btn-sm btn-success" ui-sref="emprestimo.edit({id: rec.id})">Editar</a>
+                    <a class="btn btn-sm btn-success" ui-sref="emprestimo.edit({id: rec.id})">{{ !rec.dataDevolucao ? 'Devolução' : 'Visualizar' }}</a>
                     <button ng-click="vm.excluir(rec.id)" class="btn btn-sm btn-danger" type="button">Excluir</button>
                 </td>
             </tr>
