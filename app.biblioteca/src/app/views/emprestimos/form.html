@@ -66,7 +66,7 @@
                 <div class="form-group col-md-12">
                     <label>Obsevações</label>
                     <textarea cols="60" rows="3" class="form-control" ng-model="vm.record.observacoes" readonly ng-show="!vm.isDevolucao && vm.record.id"></textarea>
-                    <textarea cols="60" rows="3" class="form-control" ng-model="vm.record.observacoes" ng-show="vm.isDevolucao"></textarea>
+                    <textarea cols="60" rows="3" class="form-control" ng-model="vm.record.observacoes" ng-show="vm.isDevolucao || !vm.record.id"></textarea>
                 </div>
                 <br>
                 <div class="form-group col-md-12">
