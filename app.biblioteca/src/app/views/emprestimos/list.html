@@ -27,7 +27,7 @@
                 <td>{{rec.livros.length}}</td>
                 <td style="text-align: right">
                     <a class="btn btn-sm btn-success" ui-sref="emprestimo.edit({id: rec.id})">{{ !rec.dataDevolucao ? 'Devolução' : 'Visualizar' }}</a>
-                    <button ng-click="vm.excluir(rec.id)" class="btn btn-sm btn-danger" type="button">Excluir</button>
+                    <button ng-click="vm.excluir(rec.id)" class="btn btn-sm btn-danger" type="button" ng-show="!rec.dataDevolucao" >Excluir</button>
                 </td>
             </tr>
         </tbody>
