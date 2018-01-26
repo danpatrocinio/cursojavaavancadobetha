@@ -37,4 +37,8 @@ public class EmprestimoDao {
         return em.createQuery("SELECT o FROM Emprestimo o").getResultList();
     }
 
+    public List<Emprestimo> findAllPendentes() {
+        return em.createQuery("SELECT o FROM Emprestimo o WHERE o.dataDevolucao IS NULL ORDER BY o.dataEmprestimo").getResultList();
+    }
+
 }

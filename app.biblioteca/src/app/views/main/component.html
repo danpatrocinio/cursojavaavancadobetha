@@ -1,4 +1,25 @@
-Hello, World!
-<button class="btn btn-success" type="button">Teste</button>
-<a ui-sref="cliente">Clientes</a>
+<div class="col-sm-8">
+<h2 class="title">Empréstimos pendentes</h2>
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Cliente</th>
+            <th scope="col">Date de empréstimo</th>
+            <th scope="col">Data prevista devolução</th>
+            <th scope="col">Data devolução</th>
+            <th scope="col">Qtd. de livros</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="rec in vm.emprestimosPendentes">
+            <th scope="row">{{rec.cliente.nome}}</th>
+            <td>{{ rec.dataEmprestimo | date: 'dd/MM/yyyy' }}</td>
+            <td>{{ rec.dataPrevisaoDevolucao | date: 'dd/MM/yyyy' }}</td>
+            <td>{{ rec.dataDevolucao | date: 'dd/MM/yyyy' }}</td>
+            <td>{{rec.livros.length}}</td>
+        </tr>
+    </tbody>
+</table>
+
 <ui-view></ui-view>

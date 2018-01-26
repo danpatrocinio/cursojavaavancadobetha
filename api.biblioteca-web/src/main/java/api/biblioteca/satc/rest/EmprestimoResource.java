@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 @Path("/emprestimos")
 public class EmprestimoResource extends AbstractCrudResource<Emprestimo> {
@@ -59,6 +60,13 @@ public class EmprestimoResource extends AbstractCrudResource<Emprestimo> {
         } catch (ModelException e) {
             return Response.ok(e.getMessage()).status(Response.Status.BAD_REQUEST).build();
         }
+    }
+
+    @GET
+    @Path("/pendentes")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Emprestimo> getAllPendentes() {
+        return service.findAllPendentes();
     }
 
 }

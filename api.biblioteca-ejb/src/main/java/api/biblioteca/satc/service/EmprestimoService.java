@@ -1,5 +1,6 @@
 package api.biblioteca.satc.service;
 
+import api.biblioteca.satc.dao.EmprestimoDao;
 import api.biblioteca.satc.dao.GenericDao;
 import api.biblioteca.satc.exceptions.ModelException;
 import api.biblioteca.satc.model.Emprestimo;
@@ -13,6 +14,7 @@ import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import static api.biblioteca.satc.model.Emprestimo.PRAZO_ENTREGA_POR_LIVRO;
 
@@ -23,32 +25,25 @@ public class EmprestimoService extends AbstractCrudService<Emprestimo> {
     @Inject
     private GenericDao<Emprestimo> dao;
 
+    @Inject
+    private EmprestimoDao emprestimosDao;
+
     @Override
     public GenericDao<Emprestimo> getDao() {
         return dao;
     }
 
-    @Override
-    public Emprestimo insert(Emprestimo bean) {
-        try {
-            if (bean.getDataEmprestimo() == null) {
-                bean.setDataEmprestimo(new java.util.Date());
-            }
-            int prazo = PRAZO_ENTREGA_POR_LIVRO * bean.getLivros().size();
-            Calendar previsaoEntrega = new GregorianCalendar();
-            previsaoEntrega.setTime(bean.getDataEmprestimo());
-            previsaoEntrega.set(Calendar.DATE, previsaoEntrega.get(Calendar.DATE) + prazo);
-            bean.setDataPrevisaoDevolucao(previsaoEntrega.getTime());
-            return inserir(bean);
-        } catch (ModelException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public Emprestimo inserir(Emprestimo emprestimo) throws ModelException {
         try {
+            if (emprestimo.getDataEmprestimo() == null) {
+                emprestimo.setDataEmprestimo(new java.util.Date());
+            }
+            int prazo = PRAZO_ENTREGA_POR_LIVRO * emprestimo.getLivros().size();
+            Calendar previsaoEntrega = new GregorianCalendar();
+            previsaoEntrega.setTime(emprestimo.getDataEmprestimo());
+            previsaoEntrega.set(Calendar.DATE, previsaoEntrega.get(Calendar.DATE) + prazo);
+            emprestimo.setDataPrevisaoDevolucao(previsaoEntrega.getTime());
             dao.inserir(emprestimo);
             return emprestimo;
         } catch (ConstraintViolationException e) {
@@ -72,6 +67,11 @@ public class EmprestimoService extends AbstractCrudService<Emprestimo> {
             }
             throw new ModelException(error.getMessage());
         }
+    }
+
+    @TransactionAttribute
+    public List<Emprestimo> findAllPendentes(){
+        return emprestimosDao.findAllPendentes();
     }
 
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
