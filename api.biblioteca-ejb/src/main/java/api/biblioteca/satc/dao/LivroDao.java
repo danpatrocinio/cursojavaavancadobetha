@@ -10,6 +10,7 @@ import javax.persistence.TypedQuery;
 import javax.validation.Valid;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -48,8 +49,16 @@ public class LivroDao {
 
     public List<EntitySelectable> findAllDisponiveisParaEmprestimoToSelectable() {
 
-        return em.createQuery("SELECT new api.biblioteca.satc.model.EntitySelectable(o.id, o.titulo) FROM Livro o " +
-                "WHERE NOT EXISTS(select e from EmprestimoLivro el WHERE el.livros_id_livro = o.id and EXISTS(select e from Emprestimo e WHERE el.emprestimo_id_emprestimo = e.id and e.dataDevolucao IS NULL))").getResultList();
+        List<Object[]> data = em.createNativeQuery("SELECT l.id_livro, l.titulo FROM livro l " +
+                "WHERE NOT EXISTS(select el from emprestimo_livro el WHERE el.livros_id_livro = l.id_livro " +
+                "  and EXISTS(select e from emprestimo e WHERE el.emprestimo_id_emprestimo = e.id_emprestimo and e.data_devolucao IS NULL))").getResultList();
+
+        List<EntitySelectable> livros = new ArrayList<>();
+        for(Object[] row : data) {
+            livros.add(new EntitySelectable(Long.parseLong(row[0].toString()), (String) row[1]));
+        }
+
+        return livros;
     }
 
 
