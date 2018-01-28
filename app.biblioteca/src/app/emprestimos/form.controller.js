@@ -2,7 +2,7 @@ export default class FormController {
 
     constructor($stateParams, $state, EmprestimoServico, ClienteServico, FuncionarioServico, LivroServico, Notification) {
         this.record = {}
-        this.title = 'Adicionando registro'
+        this.title = 'Novo empréstimo'
         this._service = EmprestimoServico
         this._livroService = LivroServico
         this._clienteService = ClienteServico
@@ -39,8 +39,7 @@ export default class FormController {
                 this._notify.success('Registro salvo com sucesso!')
                 this._state.go('emprestimo.list')
             }).catch(erro => {
-                console.log(erro.message)
-                this._notify.error('Erro ao salvar o registro!')
+                this._notify.error('Erro ao salvar o registro! ' + (!!erro.data && !!erro.data.message ? erro.data.message : ''))
             })
     }
 }

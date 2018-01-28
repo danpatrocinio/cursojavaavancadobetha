@@ -25,8 +25,8 @@ export default class ListController {
 
     excluir(id) {
         swal({
-            title: 'Remover registro',
-            text: 'Deseja realmente remover o registro',
+            title: 'Remover o registro',
+            text: 'Deseja realmente remover o cliente',
             type: 'warning',
             showConfirmButton: true,
             showCancelButton: true,
@@ -38,8 +38,9 @@ export default class ListController {
               Promise.reject({type: 'warning', message: 'Operação cancelada!!!'})
         }).then(response => {
             this.load()
-            this._notify.success('Registro excluído com sucesso')
+            this._notify.success('Cliente excluído com sucesso')
         }).catch(erro => {
+            console.dir(erro)
             this._notify({message: erro.message || 'Problemas ao excluir o registro'}, erro.type || 'error')
         }) 
     }

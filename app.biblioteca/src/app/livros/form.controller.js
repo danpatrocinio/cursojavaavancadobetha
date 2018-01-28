@@ -2,7 +2,7 @@ export default class FormController {
 
     constructor($stateParams, $state, LivroServico, AutorServico, EditoraServico, GeneroServico, Notification) {
         this.record = {}
-        this.title = 'Adicionando registro'
+        this.title = 'Novo Livro'
         this._service = LivroServico
         this._autorService = AutorServico
         this._editoraService = EditoraServico
@@ -10,7 +10,7 @@ export default class FormController {
         this.loadChilds()
         
         if ($stateParams.id) {
-            this.title = 'Editando registro'
+            this.title = 'Editando livro'
             this._service.findById($stateParams.id)
                 .then(data => {
                     this.record = data
@@ -30,11 +30,10 @@ export default class FormController {
     save() {
         this._service.save(this.record)
             .then(resp => {
-                this._notify.success('Registro salvo com sucesso!')
+                this._notify.success('Livro salvo com sucesso!')
                 this._state.go('livro.list')
             }).catch(erro => {
-                console.log(erro.message)
-                this._notify.error('Erro ao salvar o registro!')
+                this._notify.error('Erro ao salvar o registro! ' + (!!erro.data && !!erro.data.message ? erro.data.message : ''))
             })
     }
 }
