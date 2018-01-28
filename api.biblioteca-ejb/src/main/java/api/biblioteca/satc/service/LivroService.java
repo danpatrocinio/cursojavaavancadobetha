@@ -67,6 +67,10 @@ public class LivroService extends AbstractCrudService<Livro> {
         dao.remover(idLivro);
     }
 
+    public List<EntitySelectable> findAllDisponiveisParaEmprestimoToSelectable() {
+        return livroDao.findAllDisponiveisParaEmprestimoToSelectable();
+    }
+
     public List<Livro> findByTitulo(String titulo) {
         return livroDao.findAllByTitulo(titulo);
     }

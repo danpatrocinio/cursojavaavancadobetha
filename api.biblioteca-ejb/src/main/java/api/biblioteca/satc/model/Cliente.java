@@ -16,13 +16,13 @@ public class Cliente implements Serializable, api.biblioteca.satc.model.Entity {
 	@Column(name = "id_cliente")
 	private Long id;
 
-	@NotNull(message = "O nome do usuário não pode ser nulo")
+	@NotNull(message = "O nome do cliente não pode ser nulo")
 	@Column(name = "nome", length = 80, nullable = false)
 	@Size(min = 2, max = 80)
 	private String nome;
 
 	@Size(min = 11, max = 11)
-	@NotNull(message = "O CPF do funcionário não pode ser nulo")
+	@NotNull(message = "O CPF do cliente não pode ser nulo")
 	private String cpf;
 
 	private String rg;

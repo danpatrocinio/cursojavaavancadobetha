@@ -46,6 +46,13 @@ public class LivroDao {
         return em.createQuery("SELECT new api.biblioteca.satc.model.EntitySelectable(o.id, o.titulo) FROM Livro o").getResultList();
     }
 
+    public List<EntitySelectable> findAllDisponiveisParaEmprestimoToSelectable() {
+
+        return em.createQuery("SELECT new api.biblioteca.satc.model.EntitySelectable(o.id, o.titulo) FROM Livro o " +
+                "WHERE NOT EXISTS(select e from EmprestimoLivro el WHERE el.livros_id_livro = o.id and EXISTS(select e from Emprestimo e WHERE el.emprestimo_id_emprestimo = e.id and e.dataDevolucao IS NULL))").getResultList();
+    }
+
+
     public List<Livro> findByDataLancamento(Date dataLancamento) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         return findAllByProperty("data_lancamento", sdf.format(dataLancamento));
