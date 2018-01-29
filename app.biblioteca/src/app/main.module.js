@@ -12,8 +12,6 @@ import { editoraConfig } from './editoras/config'
 import { generoConfig } from './generos/config'
 import { livroConfig } from './livros/config'
 import { emprestimoConfig } from './emprestimos/config'
-import { produtoConfig } from './produtos/config'
-import { pedidoConfig } from './pedidos/config'
 
 require('angular-i18n/angular-locale_pt-br.js')
 
@@ -29,5 +27,3 @@ modulo.config(mainConfig(modulo))
       .config(generoConfig(modulo))
       .config(livroConfig(modulo))
       .config(emprestimoConfig(modulo))
-      .config(produtoConfig(modulo))
-      .config(pedidoConfig(modulo))
