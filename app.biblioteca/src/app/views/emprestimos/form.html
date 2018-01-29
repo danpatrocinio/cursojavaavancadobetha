@@ -34,12 +34,15 @@
                     <input type="text" ng-value="vm.record.dataPrevisaoDevolucao | date: 'dd/MM/yyyy'" readonly class="form-control">
                 </div>
                 <div class="form-group col-md-12">
-                    <table class="table table-striped" ng-show="vm.isDevolucao">
+                    <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th scope="col">Títulos</th>
                                 <th scope="col">Autor</th>
                                 <th scope="col">Editora</th>
+                                <th style="text-align: right">
+                                    <a class="btn btn-outline-info" data-toggle="modal" data-target="#addLivroModal">Adicionar livro</a>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -47,6 +50,9 @@
                                 <th scope="row">{{rec.titulo}}</th>
                                 <td>{{rec.autor.nome}}</td>
                                 <td>{{rec.editora.nome}}</td>
+                                <td style="text-align: right">
+                                    <button ng-click="vm.removerLivro(rec)" class="btn btn-sm btn-danger" type="button">Remover</button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -73,6 +79,56 @@
                     <a ui-sref="emprestimo.list" class="btn btn-outline-info" ng-show="!vm.isDevolucao && vm.record.id">Voltar</a>         
                 </div>
             </form>
+            {{vm.record}}
         </div>
     </div>
+
+    <!-- Add livro modal -->
+    <div class="modal fade" id="addLivroModal">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Adicionando livros ao empréstimo</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <input ng-model="filtroLivro" class="form-control justify-content-center" type="search" placeholder="Buscar título" aria-label="Buscar título">
+                <br>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Título</th>
+                            <th scope="col">Autor</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="rec in vm.livrosDisponiveis | filter:filtroLivro">
+                            <th scope="row">{{rec.titulo}}</th>
+                            <td>{{rec.autor.nome}}</td>
+                            <td style="text-align: right">
+                                <button class="btn btn-sm btn-success" ng-click="vm.addLivro(rec.id)" type="button">Adicionar</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+                <nav aria-label="Páginas">
+                    <ul class="pagination pagination-sm justify-content-center">
+                        <li class="page-item"><a class="page-link">Anterior</a></li>
+                        <li class="page-item"><a class="page-link">1</a></li>
+                        <li class="page-item"><a class="page-link">2</a></li>
+                        <li class="page-item"><a class="page-link">3</a></li>
+                        <li class="page-item"><a class="page-link">Próximo</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Pronto</button>
+            </div>
+          </div>
+        </div>
+      </div>
 </div>

@@ -39,6 +39,9 @@ public class EmprestimoService extends AbstractCrudService<Emprestimo> {
             if (emprestimo.getDataEmprestimo() == null) {
                 emprestimo.setDataEmprestimo(new java.util.Date());
             }
+            if (emprestimo.getLivros() == null || emprestimo.getLivros().size() < 1) {
+                throw new ModelException("Pelo menos um livro deve ser informado!");
+            }
             int prazo = PRAZO_ENTREGA_POR_LIVRO * emprestimo.getLivros().size();
             Calendar previsaoEntrega = new GregorianCalendar();
             previsaoEntrega.setTime(emprestimo.getDataEmprestimo());

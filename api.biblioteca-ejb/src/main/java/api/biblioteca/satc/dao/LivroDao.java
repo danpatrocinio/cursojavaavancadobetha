@@ -1,6 +1,7 @@
 package api.biblioteca.satc.dao;
 
 import api.biblioteca.satc.exceptions.ModelException;
+import api.biblioteca.satc.model.Autor;
 import api.biblioteca.satc.model.EntitySelectable;
 import api.biblioteca.satc.model.Livro;
 
@@ -47,15 +48,23 @@ public class LivroDao {
         return em.createQuery("SELECT new api.biblioteca.satc.model.EntitySelectable(o.id, o.titulo) FROM Livro o").getResultList();
     }
 
-    public List<EntitySelectable> findAllDisponiveisParaEmprestimoToSelectable() {
+    public List<Livro> findAllDisponiveisParaEmprestimoToSelectable() {
 
-        List<Object[]> data = em.createNativeQuery("SELECT l.id_livro, l.titulo FROM livro l " +
+        List<Object[]> data = em.createNativeQuery("SELECT l.id_livro, l.titulo, (select nome from autor a where a.id_autor = l.id_autor) as nome_autor FROM livro l " +
                 "WHERE NOT EXISTS(select el from emprestimo_livro el WHERE el.livros_id_livro = l.id_livro " +
                 "  and EXISTS(select e from emprestimo e WHERE el.emprestimo_id_emprestimo = e.id_emprestimo and e.data_devolucao IS NULL))").getResultList();
 
-        List<EntitySelectable> livros = new ArrayList<>();
+        List<Livro> livros = new ArrayList<>();
+        Livro livro;
+        Autor autor;
         for(Object[] row : data) {
-            livros.add(new EntitySelectable(Long.parseLong(row[0].toString()), (String) row[1]));
+            livro = new Livro();
+            livro.setId(Long.parseLong(row[0].toString()));
+            livro.setTitulo(row[1].toString());
+            autor = new Autor();
+            autor.setNome(row[2].toString());
+            livro.setAutor(autor);
+            livros.add(livro);
         }
 
         return livros;

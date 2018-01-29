@@ -23,7 +23,8 @@
     "jquery": "^1.9.1",
     "ng-flatpickr": "^0.2.4",
     "popper.js": "^1.12.3",
-    "sweetalert2": "^7.0.6"
+    "sweetalert2": "^7.0.6",
+    "select2": "~4.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

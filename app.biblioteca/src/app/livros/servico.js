@@ -6,6 +6,10 @@ export default class LivroServico extends AbstractCrudService {
     super($http, 'http://localhost:8080/api.biblioteca-web/rest/livros')
   }
 
+  loadDisponiveis() {
+    return this._http.get(`${this._url}/selectable/disponiveis`).then(response => response.data)
+  }
+
 }
 
 LivroServico.$inject = ['$http']

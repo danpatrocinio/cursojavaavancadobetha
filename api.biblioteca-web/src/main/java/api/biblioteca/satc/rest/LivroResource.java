@@ -46,7 +46,7 @@ public class LivroResource extends AbstractCrudResource<Livro> {
     @GET
     @Path("/selectable/disponiveis")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<EntitySelectable> findAllDisponiveisParaEmprestimoToSelectable() {
+    public List<Livro> findAllDisponiveisParaEmprestimoToSelectable() {
         return service.findAllDisponiveisParaEmprestimoToSelectable();
     }
 
